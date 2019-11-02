@@ -47,13 +47,10 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(List, callback) {
-	const length = list.length;
-	callback(length);
-
-	return callback(length);
-	return `There are ${length}`;
+function processLength(list, callback) {
+	return callback(list.length);
 }
+
 /**
  * ### Challenge `processLastItem`
  * 
@@ -69,7 +66,7 @@ function processLength(List, callback) {
  * should return 'barbar'.
 */
 function processLastItem(stringList, callback) {
-	return callback(processLastItem[0]);
+	return callback(stringList.slice(-1).pop());
 }
 /**
  * ### Challenge `processSum`
@@ -89,7 +86,11 @@ function processLastItem(stringList, callback) {
  * should return 1000.
 */
 function processSum(numberList, callback) {
-	return callback(numberList.reduce([ 0 ], 0));
+	return callback(
+		numberList.reduce((accum, val) => {
+			return accum + val;
+		}, 0)
+	);
 }
 
 /**
@@ -111,10 +112,7 @@ function processSum(numberList, callback) {
  * should return 1000.
 */
 function processProduct(num1, num2, callback) {
-	return callback(multiply);
-}
-function multiply(a, b, c) {
-	return a * b + c;
+	return callback(num1 * num2);
 }
 
 /**
@@ -137,8 +135,8 @@ function multiply(a, b, c) {
  * "lady gaga" and `['foo', 'bar']` and `(bool) => bool ? 'nice!' : 'sad'`,
  * should return "sad".
 */
-function processContains(/* CODE HERE */) {
-	/* CODE HERE */
+function processContains(item, list, callback) {
+	return callback(list.includes(item));
 }
 
 /**
@@ -182,7 +180,13 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
+function getFullNames(runners) {
+	const fullName = [];
+	runners.forEach(function(name) {
+		fullName.push(name.lastName + ',' + name.firstName);
+	});
+	return getFullNames;
+
 	/* CODE HERE */
 }
 
